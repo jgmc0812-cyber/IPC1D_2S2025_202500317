@@ -1,4 +1,7 @@
+package proyecto1;
 
+
+import proyecto1.admin;
 import javax.swing.*;
 import java.awt.Color;
 import helper_classes.*;
