@@ -11,11 +11,11 @@ import java.awt.event.*;
 
 public class AdminMenuJFrame extends JFrame {
     
-    private Operador admin;
+    private Usuario admin;
     private JPanel panelPrincipal;
     private CardLayout cardLayout;
     
-    public AdminMenuJFrame(Operador admin) {
+    public AdminMenuJFrame(Usuario admin) {
         this.admin = admin;
         
         setTitle("BiblioSystem - Administrador: " + admin.getNombreCompleto());

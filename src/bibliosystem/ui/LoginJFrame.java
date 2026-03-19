@@ -160,7 +160,7 @@ public class LoginJFrame extends JFrame {
     private void abrirMenuSegunRol(Usuario usuario) {
         switch (usuario.getRol()) {
             case "ADMIN":
-                new AdminMenuJFrame((Operador) usuario).setVisible(true);
+                new AdminMenuJFrame(usuario).setVisible(true);
                 break;
             case "OPERADOR":
                 new OperadorMenuJFrame((Operador) usuario).setVisible(true);
