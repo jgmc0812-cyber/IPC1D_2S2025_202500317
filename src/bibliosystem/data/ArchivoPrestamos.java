@@ -13,32 +13,56 @@ public class ArchivoPrestamos {
      * Formato: codPrestamo;carnet;codLibro;fechaPrestamo;fechaLimite;fechaDevolucion;estado
      */
     public static void cargarPrestamos() {
-        File archivo = new File(NOMBRE_ARCHIVO);
+    File archivo = new File(NOMBRE_ARCHIVO);
+    
+    if (!archivo.exists()) {
+        System.out.println("Archivo prestamos.txt no existe. Se creará al guardar.");
+        return;
+    }
+    
+    try {
+        BufferedReader lector = new BufferedReader(new FileReader(archivo));
+        String linea;
+        int contador = 0;
         
-        if (!archivo.exists()) {
-            System.out.println("Archivo prestamos.txt no existe. Se creará al guardar.");
-            return;
+        // Limpiar el arreglo de préstamos antes de cargar
+        for (int i = 0; i < DataManager.totalPrestamos; i++) {
+            DataManager.prestamos[i] = null;
+        }
+        DataManager.totalPrestamos = 0;
+        
+        // También limpiar las listas enlazadas de todos los estudiantes
+        for (int i = 0; i < DataManager.totalUsuarios; i++) {
+            Usuario u = DataManager.usuarios[i];
+            if (u instanceof Estudiante) {
+                ((Estudiante) u).setCabezaHistorial(null);
+            }
         }
         
-        try {
-            BufferedReader lector = new BufferedReader(new FileReader(archivo));
-            String linea;
-            int contador = 0;
+        while ((linea = lector.readLine()) != null && 
+               DataManager.totalPrestamos < DataManager.MAX_PRESTAMOS) {
             
-            while ((linea = lector.readLine()) != null && 
-                   DataManager.totalPrestamos < DataManager.MAX_PRESTAMOS) {
+            if (linea.trim().isEmpty()) continue;
+            
+            Prestamo prestamo = Prestamo.fromArchivoString(linea);
+            
+            if (prestamo != null) {
+                // VERIFICAR QUE NO EXISTA YA (por si acaso)
+                boolean existe = false;
+                for (int i = 0; i < DataManager.totalPrestamos; i++) {
+                    if (DataManager.prestamos[i] != null && 
+                        DataManager.prestamos[i].getCodigoPrestamo().equals(prestamo.getCodigoPrestamo())) {
+                        existe = true;
+                        break;
+                    }
+                }
                 
-                if (linea.trim().isEmpty()) continue;
-                
-                // Usar el método de la clase Prestamo para convertir desde archivo
-                Prestamo prestamo = Prestamo.fromArchivoString(linea);
-                
-                if (prestamo != null) {
+                if (!existe) {
                     DataManager.prestamos[DataManager.totalPrestamos] = prestamo;
                     DataManager.totalPrestamos++;
                     contador++;
                     
-                    // También hay que agregar este préstamo al historial del estudiante
+                    // Agregar al historial del estudiante
                     Usuario usuario = DataManager.buscarUsuario(prestamo.getCarnetEstudiante());
                     if (usuario != null && usuario instanceof Estudiante) {
                         Estudiante estudiante = (Estudiante) usuario;
@@ -46,14 +70,15 @@ public class ArchivoPrestamos {
                     }
                 }
             }
-            
-            lector.close();
-            System.out.println("Préstamos cargados: " + contador);
-            
-        } catch (Exception e) {
-            System.err.println("Error al cargar préstamos: " + e.getMessage());
         }
+        
+        lector.close();
+        System.out.println("Préstamos cargados: " + contador);
+        
+    } catch (Exception e) {
+        System.err.println("Error al cargar préstamos: " + e.getMessage());
     }
+}
     
     /**
      * Guarda UN NUEVO préstamo en el archivo

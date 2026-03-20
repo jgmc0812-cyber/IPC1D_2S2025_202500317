@@ -305,4 +305,22 @@ public class DataManager {
         
         return activos;
     }
+    
+    /**
+     * Limpia todos los préstamos en memoria (útil antes de recargar)
+    */
+    public static void limpiarPrestamos() {
+        for (int i = 0; i < totalPrestamos; i++) {
+            prestamos[i] = null;
+        }
+        totalPrestamos = 0;
+    
+        // Limpiar historiales de estudiantes
+        for (int i = 0; i < totalUsuarios; i++) {
+            Usuario u = usuarios[i];
+            if (u instanceof Estudiante) {
+                ((Estudiante) u).setCabezaHistorial(null);
+            }
+        }
+    }
 }
