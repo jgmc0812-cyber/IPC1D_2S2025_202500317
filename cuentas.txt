@@ -1,1 +1,3 @@
-202500317;111;Josselyn Mendoza;ESTUDIANTE;202500317;Ingeniería
+202500317;123;Josselyn Mendoza;ESTUDIANTE;202500317;Ingeniería
+operador1;111;Juan Perez;OPERADOR;;
+202531700;456;Ana Castillo;ESTUDIANTE;202531700;Arquitectura
