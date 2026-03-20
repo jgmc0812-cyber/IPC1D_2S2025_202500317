@@ -186,47 +186,57 @@ public class GestionLibrosJFrame extends JFrame {
     }
     
     private void modificarLibro() {
-        int fila = tablaLibros.getSelectedRow();
-        if (fila == -1) {
-            JOptionPane.showMessageDialog(this, "Seleccione un libro");
-            return;
-        }
-        
-        String codigo = modeloTabla.getValueAt(fila, 0).toString();
-        Libro libro = DataManager.buscarLibro(codigo);
-        
-        if (libro != null) {
-            try {
-                String isbn = txtIsbn.getText().trim();
-                String titulo = txtTitulo.getText().trim();
-                String autor = txtAutor.getText().trim();
-                String genero = txtGenero.getText().trim();
-                int anio = Integer.parseInt(txtAnio.getText().trim());
-                int ejemplares = Integer.parseInt(txtEjemplares.getText().trim());
-                
-                if (ejemplares < libro.getEjemplaresPrestados()) {
-                    JOptionPane.showMessageDialog(this, 
-                        "No puede reducir ejemplares por debajo de los prestados");
-                    return;
-                }
-                
-                libro.setIsbn(isbn);
-                libro.setTitulo(titulo);
-                libro.setAutor(autor);
-                libro.setGenero(genero);
-                libro.setAnioPublicacion(anio);
-                libro.setTotalEjemplares(ejemplares);
-                libro.setDisponibles(ejemplares - libro.getEjemplaresPrestados());
-                
-                Bitacora.operacionExitosa("MODIFICAR_LIBRO", "SISTEMA", "LIBROS");
-                cargarLibros();
-                JOptionPane.showMessageDialog(this, "Libro modificado");
-                
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Año y ejemplares deben ser números");
+    int fila = tablaLibros.getSelectedRow();
+    if (fila == -1) {
+        JOptionPane.showMessageDialog(this, "Seleccione un libro");
+        return;
+    }
+    
+    String codigo = modeloTabla.getValueAt(fila, 0).toString();
+    Libro libro = DataManager.buscarLibro(codigo);
+    
+    if (libro != null) {
+        try {
+            String isbn = txtIsbn.getText().trim();
+            String titulo = txtTitulo.getText().trim();
+            String autor = txtAutor.getText().trim();
+            String genero = txtGenero.getText().trim();
+            int anio = Integer.parseInt(txtAnio.getText().trim());
+            int ejemplares = Integer.parseInt(txtEjemplares.getText().trim());
+            
+            // Validar que no sea menor a los prestados
+            if (ejemplares < libro.getEjemplaresPrestados()) {
+                JOptionPane.showMessageDialog(this, 
+                    "No puede reducir ejemplares por debajo de los prestados");
+                return;
             }
+            
+            // ACTUALIZAR TODOS LOS DATOS
+            libro.setIsbn(isbn);
+            libro.setTitulo(titulo);
+            libro.setAutor(autor);
+            libro.setGenero(genero);
+            libro.setAnioPublicacion(anio);
+            
+            // ACTUALIZAR TOTAL Y DISPONIBLES
+            int prestados = libro.getEjemplaresPrestados(); // Cuántos están prestados
+            libro.setTotalEjemplares(ejemplares);
+            libro.setDisponibles(ejemplares - prestados); // Disponibles = total - prestados
+            
+            Bitacora.operacionExitosa("MODIFICAR_LIBRO", "SISTEMA", "LIBROS");
+            cargarLibros(); // Refrescar la tabla
+            limpiarCampos();
+            
+            JOptionPane.showMessageDialog(this, 
+                "Libro modificado:\n" +
+                "Total ejemplares: " + ejemplares + "\n" +
+                "Disponibles: " + (ejemplares - prestados));
+            
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Año y ejemplares deben ser números");
         }
     }
+}
     
     private void eliminarLibro() {
         int fila = tablaLibros.getSelectedRow();
