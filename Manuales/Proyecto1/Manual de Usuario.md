@@ -22,14 +22,16 @@ Este manual explica paso a paso cómo utilizar cada funcionalidad del sistema se
 ## 3. Pantalla de Inicio de Sesión
 
 Al ejecutar el programa, aparece la siguiente pantalla:
-![Pantalla de Login](imagenes/login.png)
+
+<img src="imagenes/login.png" alt="Pantalla de Login" width="300">
 
 ---
 
 ## 4. Registro de Estudiante
 
 Si eres estudiante y no tienes cuenta, haz clic en **"Registrar Estudiante"**. Aparecerá un formulario:
-![Registro de Estudiante](imagenes/registrarestudiante.png)
+
+<img src="imagenes/registrarestudiante.png" alt="Pantalla de Login" width="300">
 
 **Reglas:**
 - El carné debe ser único y funcionará como nombre de usuario
@@ -56,7 +58,7 @@ El sistema tiene tres roles con diferentes permisos:
 
 Al iniciar sesión como administrador (usuario: `admin`, contraseña: `admin`), se muestra:
 
-![Panel del Administrador](imagenes/paneladmin.png)
+<img src="imagenes/paneladmin.png" alt="Pantalla de Login" width="500">
 
 
 ### 6.1 Gestión de Operadores
@@ -67,14 +69,16 @@ Al iniciar sesión como administrador (usuario: `admin`, contraseña: `admin`), 
 | **Listar Operadores** | Se muestran automáticamente en la tabla |
 | **Eliminar Operador** | Seleccionar operador en la tabla y hacer clic en "Eliminar Operador Seleccionado" |
 
-![Registro de Operador](imagenes/registrooperador.png)
+<img src="imagenes/registrooperador.png" alt="Pantalla de Login" width="500">
+
 ---
 
 ## 7. Menú del Operador
 
 Al iniciar sesión como operador:
 
-![Panel del Operador](imagenes/paneloperador.png)
+<img src="imagenes/paneloperador.png" alt="Pantalla de Login" width="800">
+
 
 ### 7.1 Gestión de Libros
 
@@ -86,7 +90,8 @@ Al iniciar sesión como operador:
 | **Buscar Libro** | Escribir en el campo de búsqueda y seleccionar por Título, Autor o ISBN |
 | **Ver Todos** | Hacer clic en "Ver Todos" para mostrar todos los libros |
 
-![Gestión de Libros](imagenes/gestionlibros.png)
+<img src="imagenes/gestionlibros.png" alt="Pantalla de Login" width="900">
+
 
 ### 7.2 Gestión de Estudiantes
 
@@ -96,7 +101,8 @@ Al iniciar sesión como operador:
 | **Listar Todos** | Hacer clic en "Listar Todos" |
 | **Eliminar Estudiante** | Seleccionar estudiante en la tabla y hacer clic en "Eliminar" (solo si no tiene préstamos) |
 
-![Gestión Estudiantes](imagenes/gestionestudiantes.png)
+<img src="imagenes/gestionestudiantes.png" alt="Pantalla de Login" width="900">
+
 
 ### 7.3 Control de Préstamos
 
@@ -118,14 +124,16 @@ Al iniciar sesión como operador:
 - Se muestran automáticamente en la tabla de la derecha
 - Los préstamos vencidos aparecen con color de fondo diferente
 
-![Prestamos](imagenes/controlprestamos.png)
+<img src="imagenes/controlprestamos.png" alt="Pantalla de Login" width="400">
+
 
 ---
 
 ## 8. Menú del Estudiante
 
 Al iniciar sesión como estudiante:
-![Panel Estudiante](imagenes/panelestudiante.png)
+
+<img src="imagenes/panelestudiante.png" alt="Pantalla de Login" width="500">
 
 
 ### 8.1 Pestañas del Estudiante
@@ -144,7 +152,8 @@ Al iniciar sesión como estudiante:
 3. Hacer clic en "Solicitar Préstamo"
 4. Si es válido, aparece mensaje de confirmación con fecha límite
 
-![Prestamo del libro](imagenes/solicitarprestamo.png)
+<img src="imagenes/solicitarprestamo.png" alt="Pantalla de Login" width="600">
+
 
 **Restricciones:**
 - Máximo 3 préstamos activos
@@ -166,7 +175,8 @@ Todos los usuarios (excepto estudiantes) pueden generar reportes en formato HTML
 | **5 Libros Más Prestados** | Top 5 libros con más préstamos en la historia |
 | **Estudiantes con Préstamos Activos** | Lista de estudiantes que tienen préstamos vigentes |
 
-![Generar Reporte](imagenes/generarreporte.png)
+<img src="imagenes/generarreporte.png" alt="Pantalla de Login" width="600">
+
 
 ### Cómo Generar un Reporte:
 
@@ -174,7 +184,8 @@ Todos los usuarios (excepto estudiantes) pueden generar reportes en formato HTML
 2. El sistema muestra mensaje: "Reporte generado: nombre_archivo.html"
 3. Los reportes se guardan en la carpeta del proyecto
 
-![Reporte generado](imagenes/reportedeprestamos.png)
+<img src="imagenes/reportedeprestamos.png" alt="Pantalla de Login" width="400">
+
 
 ### Cómo Ver un Reporte:
 
@@ -182,7 +193,8 @@ Todos los usuarios (excepto estudiantes) pueden generar reportes en formato HTML
 2. Buscar el archivo HTML (ej: `reporte_libros_disponibles_2026-03-20.html`)
 3. Hacer doble clic para abrirlo en el navegador
 
-![Reporte generado](imagenes/reporteestudiantes.png)
+<img src="imagenes/reporteestudiantes.png" alt="Pantalla de Login" width="400">
+
 
 ---
 
@@ -191,8 +203,8 @@ Todos los usuarios (excepto estudiantes) pueden generar reportes en formato HTML
 El sistema registra automáticamente todas las acciones importantes en el archivo `bitacora.txt`.
 
 **Ejemplo de bitácora:**
-![Bitacora](imagenes/bitacora.png)
 
+<img src="imagenes/bitacora.png" alt="Pantalla de Login" width="500">
 
 ---
 
@@ -212,7 +224,7 @@ El sistema registra automáticamente todas las acciones importantes en el archiv
 
 Para cerrar la sesión actual, hacer clic en el botón **"Cerrar Sesión"** ubicado en la esquina superior derecha de cada pantalla.
 
-![Cerrar Sesión](imagenes/cerrarsesion.png)
+<img src="imagenes/cerrarsesion.png" alt="Pantalla de Login" width="500">
 
 ---
 
